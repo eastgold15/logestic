@@ -5,45 +5,45 @@
  * It also includes a type for the format object.
  */
 
-import { BunFile } from 'bun';
+import type { BunFile } from "bun";
 
 export type Attribute = {
-  ip: string;
-  method: string;
-  path: string;
-  body: any;
-  query: Record<string, string | undefined>;
-  time: Date;
-  contentLength: number;
-  status: number;
-  referer: string;
-  userAgent: string;
-  duration: bigint;
+	ip: string;
+	method: string;
+	path: string;
+	body: any;
+	query: Record<string, string | undefined>;
+	time: Date;
+	contentLength: number;
+	status: number;
+	referer: string;
+	userAgent: string;
+	duration: bigint;
 };
 
 export type ErrorAttribute = {
-  request: Request;
-  error: Error;
-  code: any; // either string description or number
-  datetime: Date;
+	request: Request;
+	error: Error;
+	code: any; // either string description or number
+	datetime: Date;
 };
 
 /**
  * `Presets` is an object that contains preset configurations for the Logestic module.
  */
-export type Preset = 'common' | 'fancy' | 'commontz';
+export type Preset = "common" | "fancy" | "commontz";
 /**
  * `Callback` is an object that contains functions to format successful and failed logs.
  */
 export type Callback<K extends keyof Attribute> = {
-  onRequest?: (attr: Request) => string;
-  onSuccess: (attr: Pick<Attribute, K>) => string;
-  onFailure: (attr: ErrorAttribute) => string;
+	onRequest?: (attr: Request) => string;
+	onSuccess: (attr: Pick<Attribute, K>) => string;
+	onFailure: (attr: ErrorAttribute) => string;
 };
 
-export type LogType = 'http' | 'info' | 'warn' | 'debug' | 'error';
+export type LogType = "http" | "info" | "warn" | "debug" | "error";
 export type LogLevelColour = {
-  [key in LogType]?: string;
+	[key in LogType]?: string;
 };
 
 /**
@@ -57,9 +57,9 @@ export type LogLevelColour = {
  * @see LogLevelColour
  */
 export type LogesticOptions = {
-  dest?: BunFile;
-  showLevel?: boolean;
-  logLevelColour?: LogLevelColour;
-  httpLogging?: boolean;
-  explicitLogging?: boolean;
+	dest?: BunFile;
+	showLevel?: boolean;
+	logLevelColour?: LogLevelColour;
+	httpLogging?: boolean;
+	explicitLogging?: boolean;
 };
